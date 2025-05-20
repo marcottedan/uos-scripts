@@ -1,5 +1,6 @@
 # uos-scripts
 
+## ChatGPT Prompt for MacOS / Linux
 ```
 mkdir -p ~/Downloads/UOS
 cd ~/Downloads/UOS
@@ -22,3 +23,5 @@ curl -L -o Targeting.md "https://raw.githubusercontent.com/wiki/uosagas/assistan
   cat *.md
 } | pbcopy
 ```
+
+## ChatGPT Prompt for Windows
