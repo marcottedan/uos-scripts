@@ -2,6 +2,7 @@ local function PrintItem(item)
     -- Get item properties safely:
     local name = item.Name or "NoName"
     local graphic = item.Graphic or "Unknown"
+    local container = item.RootContainer
     local hue = item.Hue or "0"
     local amount = item.Amount or 1
     local layer = item.Layer or "None"
@@ -12,6 +13,7 @@ local function PrintItem(item)
     Messages.Print("===============================")
     Messages.Print("Name:       " .. name)
     Messages.Print("Graphic ID: " .. graphic)
+    Messages.Print("Container: " .. container)
     --Messages.Print("Hue:        " .. hue)
     Messages.Print("Amount:     " .. amount)
     -- Will work eventually
