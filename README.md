@@ -1,27 +1,18 @@
 # uos-scripts
 
-## ChatGPT Prompt for MacOS / Linux
-```
-mkdir -p ~/Downloads/UOS
-cd ~/Downloads/UOS
+## Setup
 
-curl -L -o Generic-Functions.md "https://raw.githubusercontent.com/wiki/uosagas/assistant/Generic-Functions.md"
-curl -L -o Gumps.md "https://raw.githubusercontent.com/wiki/uosagas/assistant/Gumps.md"
-curl -L -o Items.md "https://raw.githubusercontent.com/wiki/uosagas/assistant/Items.md"
-curl -L -o Journal.md "https://raw.githubusercontent.com/wiki/uosagas/assistant/Journal.md"
-curl -L -o Messages.md "https://raw.githubusercontent.com/wiki/uosagas/assistant/Messages.md"
-curl -L -o Mobiles.md "https://raw.githubusercontent.com/wiki/uosagas/assistant/Mobiles.md"
-curl -L -o Player.md "https://raw.githubusercontent.com/wiki/uosagas/assistant/Player.md"
-curl -L -o Skills.md "https://raw.githubusercontent.com/wiki/uosagas/assistant/Skills.md"
-curl -L -o Spells.md "https://raw.githubusercontent.com/wiki/uosagas/assistant/Spells.md"
-curl -L -o Targeting.md "https://raw.githubusercontent.com/wiki/uosagas/assistant/Targeting.md"
+1. `git clone` the repository in a stand-alone folder
+2. Modify `create_symlink.bat` GitCloneDir and UOSagasDir to match your OS
+3. Run `create_symlink.bat` as an Administrator, it will take a backup of your existing Assistant `Scripts` and create a symlink of the repository you cloned on 1). 
 
-{
-  echo "You are an Expert in LUA coding. You have deep expertise with ClassicUO, Razor, and Ultima Online automation and scripting. Do not ever hallucinate or use method that do not exist."
-  echo "Below, I will provide detailed LUA API documentation for the UO Sagas Assistant library. This markdown documentation includes various functions and methods related to game entities and interaction, such as:"
-  echo ""
-  cat *.md
-} | pbcopy
-```
+## Update
+
+1. Go in your Scripts folder and run `git pull`
 
 ## ChatGPT Prompt for Windows
+Double-click on `generate_chatgpt_prompt.bat` (Do not run as Administrator)
+
+## ChatGPT Prompt for MacOS / Linux
+
+Run `./generate_chatgpt_prompt.sh`
