@@ -1,4 +1,5 @@
 local printFn = require("Data/Profiles/Scripts/Lib/Print")
+local waitTime = 500
 
 -- Iron Ore 2 stones: 6583  # Small scattered
 -- Iron Ore 7a stones: 6586 # Large scattered
@@ -11,28 +12,28 @@ for idx, graphic in ipairs(itemIdSmallOrePile) do
     itemTypeIndex[graphic] = idx
 end
 
--- Gets all items that are Ore stacks, sort them by GraphicId ascending.
-local function getSortedOreStacks()
+-- Gets all items that are Chok stacks, sort them by GraphicId ascending.
+local function getAndSortChok()
     local foundOres = Items.FindByFilter({})
-    local sortedOreStacks = {}
+    local sortedChokStacks = {}
 
     for _, ore in ipairs(foundOres) do
         if ore.RootContainer == Player.Serial and itemTypeIndex[ore.Graphic] then
-            table.insert(sortedOreStacks, ore)
+            table.insert(sortedChokStacks, ore)
         end
     end
 
     -- sort ascending: lightest (1) first, then heavier
-    table.sort(sortedOreStacks, function(a, b)
+    table.sort(sortedChokStacks, function(a, b)
         return itemTypeIndex[a.Graphic] < itemTypeIndex[b.Graphic]
     end)
 
-    return sortedOreStacks
+    return sortedChokStacks
 end
 
-function oreProcessing()
+function mergeChoks()
 
-    local sortedOres = getSortedOreStacks()
+    local sortedOres = getAndSortChok()
 
     -- Loop from the heaviest index down to the 2nd-lightest
     for i = #sortedOres, 2, -1 do
@@ -41,26 +42,20 @@ function oreProcessing()
         local lighterOre = sortedOres[i - 1]
 
         Player.UseObject(heavierOre.Serial)
-        if Targeting.WaitForTarget(1000) then
-            Messages.Overhead("Merging ore piles ", heavierOre.Amount)
+        if Targeting.WaitForTarget(waitTime) then
+            Messages.Overhead("Merging choks : ", heavierOre.Amount)
             Targeting.Target(lighterOre.Serial)
-            Pause(1000)
-
-            hasMerged = true
-            break -- after a merge, refresh the items to update the sorted list
+            Pause(waitTime)
         end
+        sortedOres = getAndSortChok()
     end
     return sortedOres[1]
 end
 
 function main()
     Journal.Clear()
-    local sortedOres = getSortedOreStacks()
-    for _, ore in ipairs(sortedOres) do
-        printFn(ore)
-    end
-    local mergedOre = oreProcessing()
-    printFn(mergedOre)
+    local mergedChok = mergeChoks()
+    printFn(mergedChok)
 end
 
 --while action do
