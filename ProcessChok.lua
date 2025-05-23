@@ -43,7 +43,7 @@ function mergeChoks()
 
         Player.UseObject(heavierOre.Serial)
         if Targeting.WaitForTarget(waitTime) then
-            Messages.Overhead("Merging choks : ", heavierOre.Amount)
+            Messages.Overhead("Merging choks : " .. heavierOre.Amount, Player.Serial)
             Targeting.Target(lighterOre.Serial)
             Pause(waitTime)
         end
@@ -55,7 +55,10 @@ end
 function main()
     Journal.Clear()
     local mergedChok = mergeChoks()
-    printFn(mergedChok)
+    if mergedChok == nil then
+        Messages.Overhead('No chok to process', Player.Serial)
+        return
+    end
 end
 
 --while action do
