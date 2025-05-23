@@ -166,36 +166,36 @@ Items.FindByLayer(layer)
 **Parameters**<br/>
 `layer: Numeric value representing the layer to search for the item`<br/>
 where layer is:<br/>
-`Invalid`: 1
-`OneHanded`: 2
-`TwoHanded`: 3
-`Shoes`: 4
-`Pants`: 5
-`Shirt`: 6
-`Helmet`: 7
-`Gloves`: 8
-`Ring`: 9
-`Talisman`: 10
-`Necklace`: 11
-`Hair`: 12
-`Waist`: 13
-`Torso`: 14
-`Bracelet`: 15
-`Face`: 16
-`Beard`: 17
-`Tunic`: 18
-`Earrings`: 19
-`Arms`: 20
-`Cloak`: 21
-`Backpack`: 22
-`Robe`: 23
-`Skirt`: 24
-`Legs`: 25
-`Mount`: 26
-`ShopBuyRestock`: 27
-`ShopBuy`: 28
-`ShopSell`: 29
-`Bank`: 30
+`Invalid` : 0
+`OneHanded` : 1
+`TwoHanded` : 2
+`Shoes` : 3
+`Pants` : 4
+`Shirt` : 5
+`Helmet` : 6
+`Gloves` : 7
+`Ring` : 8
+`Talisman` : 9
+`Necklace` : 10
+`Hair` : 11
+`Waist` : 12
+`Torso` : 13
+`Bracelet` : 14
+`Face` : 15
+`Beard` : 16
+`Tunic` : 17
+`Earrings` : 18
+`Arms` : 19
+`Cloak` : 20
+`Backpack` : 21
+`Robe` : 22
+`Skirt` : 23
+`Legs` : 24
+`Mount` : 25
+`ShopBuyRestock` : 26
+`ShopBuy` : 27
+`ShopSell` : 28
+`Bank` : 29
 
 **Returns**<br/>
 `Table: Item table if the item is found, or nil if not found`
@@ -641,6 +641,7 @@ Player.PickUp(serial)
 Player.DropInBackpack()
 Player.DropInContainer(serial)
 Player.ToggleWarMode()
+Player.PopPouch()
 ```
 ### Attributes
 
@@ -1043,6 +1044,20 @@ Player.ToggleWarMode()
 ```lua
 -- toggles the war mode of a player
 Player.ToggleWarMode()
+```
+
+## PopPouch
+```lua
+Player.PopPouch()
+```
+
+**Returns**<br/>
+`Boolean: True if the action is successful, false otherwise`
+
+**Example**
+```lua
+-- pops a trapped pouch inside your backpack
+Player.PopPouch()
 ```## Overview
 ```lua
 Skills.Use(SkillName)
