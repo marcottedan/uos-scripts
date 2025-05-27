@@ -14,7 +14,7 @@ local function PrintItem(item)
     Messages.Print("Name:       " .. name)
     Messages.Print("Graphic ID: " .. graphic)
     Messages.Print("Container: " .. container)
-    --Messages.Print("Hue:        " .. hue)
+    Messages.Print("Hue:        " .. hue)
     Messages.Print("Amount:     " .. amount)
     -- Will work eventually
     -- Messages.Print("Durability: " .. durability)
