@@ -1,7 +1,7 @@
 local G = {}
 
-G.IronOreHue = { [1] = 0}
-G.ShadowIronOreHue = { [1] = 2406}
+G.IronOreHue = 0
+G.ShadowIronOreHue = 2406
 G.AllOreHue = {
     [1] = 0,
     [2] = 2406

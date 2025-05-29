@@ -27,23 +27,22 @@ end
 ]]
 local function getOresByHue()
 
-    local playerOres = Items.FindByFilter({ graphics = G.OreGraphics })
     local oresByHue = {}
 
+    local worldOres = Items.FindByFilter({rangmine = 0, rangemax = 2, graphics = G.OreGraphics})
+    for _, ore in ipairs(worldOres) do
+        oresByHue[ore.Hue] = oresByHue[ore.Hue] or {}
+        --printItemFn(ore)
+        table.insert(oresByHue[ore.Hue], ore)
+    end
+
+    local playerOres = Items.FindByFilter({ graphics = G.OreGraphics })
     for _, ore in ipairs(playerOres) do
         if ore.RootContainer == Player.Serial then
             oresByHue[ore.Hue] = oresByHue[ore.Hue] or {}
             --printItemFn(ore)
             table.insert(oresByHue[ore.Hue], ore)
         end
-    end
-
-    local worldOres = Items.FindByFilter({movable = true, rangmine = 0, rangemax = 2, graphics = G.OreGraphics})
-
-    for _, ore in ipairs(worldOres) do
-        oresByHue[ore.Hue] = oresByHue[ore.Hue] or {}
-        --printItemFn(ore)
-        table.insert(oresByHue[ore.Hue], ore)
     end
 
     -- Sort each hue group ascending: lightest (1) first, then heavier
