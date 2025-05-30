@@ -1,5 +1,9 @@
 local G = {}
 
+G.Green = 38
+G.Purple = 14
+G.Gray = 73
+
 G.IronOreHue = 0
 G.ShadowIronOreHue = 2406
 G.AllOreHue = {

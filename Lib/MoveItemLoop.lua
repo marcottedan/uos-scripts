@@ -1,5 +1,4 @@
 local G = require("Data/Profiles/Scripts/Lib/Global")
-local printItemFn = require("Data/Profiles/Scripts/Lib/Print")
 
 local function moveItemLoop(item)
 
