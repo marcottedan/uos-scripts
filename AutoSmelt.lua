@@ -40,20 +40,27 @@ function main()
             Pause(100)
         end
     end
+    Pause(500)
 
-    -- Move smelted ores to locked piles
-    local crates = Items.FindByFilter({ name = "Crate", onground = true, rangemin = 0, rangemax = 2 })
+    -- Find Crate in hut
+    local crates = Items.FindByFilter({ name = "Crate", onground = true, container = true, rangemin = 0, rangemax = 2 , graphics = {3710}})
     if #crates == 0 then
+        Messages.Overhead("No crate found")
         return
     end
+    local crate = crates[1]
+    printItemFn(crate)
 
-    Pause(500)
+    -- Move smelted ores to crate
     local backpackIngots = Items.FindByFilter({ onground = false, graphics = G.IngotGraphics })
     for _, ingot in ipairs(backpackIngots) do
         if ingot.RootContainer == Player.Serial then
             Player.PickUp(ingot.Serial, ingot.Amount)
             Pause(500)
-            Player.DropInContainer(crates[1].Serial)
+            --Messages.Print("Create Serial: " .. crate.Serial)
+            --Messages.Print("Create RootContainer: " .. crate.RootContainer)
+            Player.DropInContainer(crate.RootContainer)
+            Pause(100)
         end
     end
 
