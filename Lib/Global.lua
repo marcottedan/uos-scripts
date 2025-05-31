@@ -16,6 +16,7 @@ G.AllOreHue = {
 -- Iron Ore 7b stones: 6584 # Small round
 -- Iron Ore 12 stones: 6585 # Large round
 G.OreGraphics = { 6583, 6586, 6584, 6585} -- sorted heaviest [1] to lightest [4]
+G.IngotGraphics = { 7154 }
 
 G.OreFilter = {
     [1] = 6583,
