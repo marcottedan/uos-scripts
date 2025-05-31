@@ -192,6 +192,14 @@ local ItemTypes = {
         { ItemType = 0x1f6a, Name = "Summon Earth Elemental" },
         { ItemType = 0x1f6b, Name = "Summon Fire Elemental" },
         { ItemType = 0x1f6c, Name = "Summon Water Elemental" }
+    },
+    Gems = {
+        { ItemType = 3877, Name = "Amber" },
+        { ItemType = 3862, Name = "Amethyst" },
+        { ItemType = 3856, Name = "Emerald" },
+        { ItemType = 3865, Name = "Sapphire" },
+        { ItemType = 3859, Name = "Ruby" },
+        { ItemType = 0x1f6c, Name = "Diamond" }
     }
 }
 return ItemTypes

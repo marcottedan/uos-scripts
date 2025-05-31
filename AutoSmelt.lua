@@ -2,6 +2,7 @@ local G = require("Data/Profiles/Scripts/Lib/Global")
 local printItemFn = require("Data/Profiles/Scripts/Lib/Print")
 local mergeOreFn = require("Data/Profiles/Scripts/Lib/MergeOre")
 local getOreFn = require("Data/Profiles/Scripts/Lib/Ore")
+local itemTypes = require("Data/Profiles/Scripts/Lib/ItemCategory")
 
 local FORGE_GRAPHIC_ID = 4017
 
@@ -57,13 +58,32 @@ function main()
         if ingot.RootContainer == Player.Serial then
             Player.PickUp(ingot.Serial, ingot.Amount)
             Pause(500)
-            --Messages.Print("Create Serial: " .. crate.Serial)
-            --Messages.Print("Create RootContainer: " .. crate.RootContainer)
             Player.DropInContainer(crate.RootContainer)
             Pause(100)
         end
     end
 
+    -- Find Crate in hut
+    local bags = Items.FindByFilter({ name = "Bag", onground = true, container = true, rangemin = 0, rangemax = 2 , graphics = {3702}})
+    if #bags == 0 then
+        Messages.Overhead("No bag found")
+        return
+    end
+    local bag = bags[1]
+    printItemFn(bag)
+
+
+    -- Move Gems to Bag
+    local gemGraphicIds = (function() local t={} for _,v in ipairs(itemTypes.Gems) do table.insert(t,v.ItemType) end return t end)()
+    local gems = Items.FindByFilter({ onground = false, graphics = gemGraphicIds })
+    for _, gem in ipairs(gems) do
+        if gem.RootContainer == Player.Serial then
+            Player.PickUp(gem.Serial, gem.Amount)
+            Pause(500)
+            Player.DropInContainer(bag.RootContainer)
+            Pause(100)
+        end
+    end
 end
 
 main()
