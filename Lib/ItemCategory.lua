@@ -199,7 +199,7 @@ local ItemTypes = {
         { ItemType = 3856, Name = "Emerald" },
         { ItemType = 3865, Name = "Sapphire" },
         { ItemType = 3859, Name = "Ruby" },
-        { ItemType = 0x1f6c, Name = "Diamond" }
+        { ItemType = 3878, Name = "Diamond" }
     }
 }
 return ItemTypes

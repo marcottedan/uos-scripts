@@ -3,8 +3,7 @@ local printItemFn = require("Data/Profiles/Scripts/Lib/Print")
 local mergeOreFn = require("Data/Profiles/Scripts/Lib/MergeOre")
 local getOreFn = require("Data/Profiles/Scripts/Lib/Ore")
 local itemTypes = require("Data/Profiles/Scripts/Lib/ItemCategory")
-local findTinkerToolFn = require("Data/Profiles/Scripts/Lib/FindTinkerTool")
-
+local findSmithHammerFn = require("Data/Profiles/Scripts/Lib/FindSmithHammer")
 
 function makeLast()
     -- Wait maximum 2 seconds for the gump to open
@@ -19,7 +18,7 @@ end
 function main()
     Journal.Clear()
 
-    while findTinkerToolFn() do
+    while findSmithHammerFn() do
         makeLast()
     end
 

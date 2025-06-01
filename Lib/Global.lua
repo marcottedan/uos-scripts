@@ -25,6 +25,6 @@ G.OreFilter = {
     [4] = 6585
 }
 
-G.MakeLast = 2653346093
+G.ToolGump = 2653346093
 
 return G

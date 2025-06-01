@@ -63,7 +63,7 @@ function main()
         end
     end
 
-    -- Find Crate in hut
+    -- Find Bag in hut for Gems
     local bags = Items.FindByFilter({ name = "Bag", onground = true, container = true, rangemin = 0, rangemax = 2 , graphics = {3702}})
     if #bags == 0 then
         Messages.Overhead("No bag found")
