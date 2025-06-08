@@ -4,7 +4,8 @@ local mergeOreFn = require("Data/Profiles/Scripts/Lib/MergeOre")
 local getOreFn = require("Data/Profiles/Scripts/Lib/Ore")
 local itemTypes = require("Data/Profiles/Scripts/Lib/ItemCategory")
 
--- Barrel Tap : 4100
+-- Barrel Tap: 4100
+-- Barrel Hoops: 7607
 
 function dropCrap()
 
