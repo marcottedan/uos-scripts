@@ -1,11 +1,10 @@
-local function FindSmithHammer(item)
+local function FindSmithHammer()
     -- Blacksmith's Hammer : 5091
-    -- Find an item to use
-    tinkerTool = Items.FindByType(5091)
+    tool = Items.FindByType(5091)
 
     -- If item is found use it
-    if tinkerTool ~= nil then
-        Player.UseObject(tinkerTool.Serial)
+    if tool ~= nil then
+        Player.UseObject(tool.Serial)
         return true
     end
 

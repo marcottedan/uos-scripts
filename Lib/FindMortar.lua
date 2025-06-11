@@ -1,6 +1,6 @@
-local function FindTinkerTool(item)
-    -- Tinker's Tool : 7864
-    tool = Items.FindByType(7864)
+local function findMortar()
+    -- Lockpick Tool : 3739
+    tool = Items.FindByType(3739)
 
     -- If item is found use it
     if tool ~= nil then
@@ -12,4 +12,4 @@ local function FindTinkerTool(item)
 
 end
 
-return FindTinkerTool
+return findMortar
