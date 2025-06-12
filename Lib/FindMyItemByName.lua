@@ -3,17 +3,17 @@ local printItemFn = require("Data/Profiles/Scripts/Lib/Print")
 
 local function findMyItemByName(itemName)
 
-    local item = nil
-    item = Items.FindByName(itemName)
+    local items = Items.FindByFilter({})
 
-    if item ~= nil then
-        --printItemFn(item)
+    for _, item in ipairs(items) do
         if item.RootContainer == Player.Serial then
-            return item
+            if item.Name == itemName then
+                return item
+            end
         end
     end
 
-    return item
+    return nil
 end
 
 return findMyItemByName

@@ -28,14 +28,13 @@ function main()
     local ironOre = nil
     if huesToSortedOres[G.IronOreHue] and huesToSortedOres[G.IronOreHue][1] then
         ironOre = huesToSortedOres[G.IronOreHue][1]
-        Messages.Overhead("Ore found: " .. ironOre.Name, Player.Serial)
     else
         Messages.Overhead('No chok to process', Player.Serial)
         return
     end
 
     -- Drop Iron Ore on ground + take it back
-    printItemFn(ironOre)
+    --printItemFn(ironOre)
     while action do
         moveItemLoopFn(ironOre)
     end

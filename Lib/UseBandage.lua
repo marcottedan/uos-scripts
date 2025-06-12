@@ -5,6 +5,9 @@ local function UseBandages()
     -- If item is found use it
     if bandages ~= nil then
         Player.UseObject(bandages.Serial)
+        if Targeting.WaitForTarget(500) then
+            Targeting.TargetSelf()
+        end
         return true
     end
 
