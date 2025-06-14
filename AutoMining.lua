@@ -120,7 +120,10 @@ function main()
         end
         while true do
             --Cancel with Ctrl + C shortcut on "Stop All Scripts"
-            moveItemLoopFn(ironOre)
+            if not moveItemLoopFn(ironOre) then
+                huesToSortedOres = mergeOreFn()
+                ironOre = huesToSortedOres[G.IronOreHue][1]
+            end
         end
     end
 end

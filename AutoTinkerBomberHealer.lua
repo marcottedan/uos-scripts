@@ -69,7 +69,7 @@ function lockpickChest(chest)
         end
         Targeting.WaitForTarget(1000)
         Targeting.Target(chest.Serial)
-
+        Pause(4050)
         LockpickingChest = not checkJournal(lockpickSuccess)
     end
 end

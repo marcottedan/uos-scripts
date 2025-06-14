@@ -36,7 +36,10 @@ function main()
     -- Drop Iron Ore on ground + take it back
     --printItemFn(ironOre)
     while action do
-        moveItemLoopFn(ironOre)
+        if not moveItemLoopFn(ironOre) then
+            huesToSortedOres = mergeOreFn()
+            ironOre = huesToSortedOres[G.IronOreHue][1]
+        end
     end
 
 end
