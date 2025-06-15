@@ -38,6 +38,9 @@ function main()
     while action do
         if not moveItemLoopFn(ironOre) then
             huesToSortedOres = mergeOreFn()
+            if huesToSortedOres[G.IronOreHue] == nil then
+                huesToSortedOres = mergeOreFn()
+            end
             ironOre = huesToSortedOres[G.IronOreHue][1]
         end
     end
