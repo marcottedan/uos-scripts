@@ -7,10 +7,9 @@ local itemTypes = require("Data/Profiles/Scripts/Lib/ItemCategory")
 -- Barrel Tap: 4100
 -- Barrel Hoops: 7607
 -- Bowl : 5629
-
 function dropCrap()
 
-    craps = Items.FindByFilter({ onground = false, graphics = { 5629 } })
+    craps = Items.FindByFilter({ onground = false, graphics = { 4100 } })
     for _, crap in ipairs(craps) do
         if crap.RootContainer == Player.Serial then
             --printItemFn(crap)
