@@ -23,7 +23,6 @@ local lockpickSuccess = {
     "This does not appear to be locked."
 }
 
-
 function checkJournal(messages)
     for _, msg in ipairs(messages) do
         if Journal.Contains(msg) then
@@ -43,11 +42,9 @@ function bandageSelf()
 end
 
 function castSongOfHealing()
-    while Player.DiffHits > 0 do
-        --Messages.Overhead("Casting song of healing", Player.Serial)
-        if useSongOfHealingFn() then
-            Pause(songOfHealingCooldown)
-        end
+    if Player.DiffHits > 0 then
+        useSongOfHealingFn()
+        Pause(2000)
     end
 end
 
@@ -73,41 +70,38 @@ function trapChest(chest)
     Targeting.Target(chest.Serial)
 end
 
-function lockpickChest(chest)
+function lockpickChest(chest, key)
 
-    while LockpickingChest do
-        if not findLockpickToolFn() then
-            return
+    if Player.DiffHits == 0 then
+        while LockpickingChest do
+            if not findLockpickToolFn() then
+                return
+            end
+            Targeting.WaitForTarget(1000)
+            Targeting.Target(chest.Serial)
+            Pause(4050)
+            LockpickingChest = not checkJournal(lockpickSuccess)
         end
-        Targeting.WaitForTarget(1000)
-        Targeting.Target(chest.Serial)
-        Pause(4050)
-        LockpickingChest = not checkJournal(lockpickSuccess)
+    else
+        -- Pretend we unlocked it to trap it again
+        lockChest(key, chest)
     end
 end
 
-function dropAndPickupChestForConcurrentUnlock(chest)
-    if Player.DiffHits > 0 then
-        Messages.Overhead("Dropping chest on the ground", Player.Serial)
-        Pause(500)
-        Player.PickUp(chest.Serial)
-        Pause(500)
-        Player.DropOnGround(chest.Serial)
-        Pause(10000)
-        chest = findMyItemOnGroundByNameFn('Wooden Box')
-        Messages.Overhead("Picking up chest", Player.Serial)
-        Player.PickUp(chest.Serial)
-        Pause(500)
-        Player.DropInBackpack(chest.Serial)
-        Pause(500)
-
-        ---- Trap chest
-        --trapChest(chest)
-        --trapChest(chest)
-        --
-        ---- Enable trap
-        --lockChest(key, chest)
-    end
+function dropAndPickupChestForConcurrentUnlock()
+    chest = findMyItemByNameFn('Wooden Box')
+    Messages.Overhead("Dropping chest on the ground", Player.Serial)
+    Pause(500)
+    Player.PickUp(chest.Serial)
+    Pause(500)
+    Player.DropOnGround(chest.Serial)
+    Pause(5000)
+    chest = findMyItemOnGroundByNameFn('Wooden Box')
+    Messages.Overhead("Picking up chest", Player.Serial)
+    Player.PickUp(chest.Serial)
+    Pause(500)
+    Player.DropInBackpack(chest.Serial)
+    Pause(500)
 end
 
 function main()
@@ -141,7 +135,7 @@ function main()
     castSongOfHealing()
 
     -- Lockpick chest to explosion
-    lockpickChest(chest)
+    lockpickChest(chest, key)
 end
 
 while true do
