@@ -3,7 +3,7 @@ local printItemFn = require("Data/Profiles/Scripts/Lib/Print")
 local findMyItemOnGroundByNameFn = require("Data/Profiles/Scripts/Lib/FindMyItemOnGroundByName")
 local findLockpickToolFn = require("Data/Profiles/Scripts/Lib/FindLockpickTool")
 
-
+local itemName = 'Wooden Box'
 local LockpickingChest = true
 
 local lockpickSuccess = {
@@ -18,6 +18,18 @@ function checkJournal(messages)
         end
     end
     return false, nil
+end
+
+function lookForWoodenBox()
+    local items = Items.FindByFilter({rangemax = 2})
+
+    for _, item in ipairs(items) do
+        if item.Name == itemName then
+            --Messages.Overhead("Found a Wooden Box", Player.Serial)
+            --printItemFn(item)
+            return item
+        end
+    end
 end
 
 function lockpickChest(chest)
@@ -39,7 +51,7 @@ function main()
     -- Wait for healthy
     while Player.DiffHits > 0 do
         -- Wait for Song of Healing Tick
-        Messages.Overhead("Wait for Healing Song", Player.Serial)
+        Messages.Overhead("Waiting for Healing", Player.Serial)
         Pause(10000)
     end
 
