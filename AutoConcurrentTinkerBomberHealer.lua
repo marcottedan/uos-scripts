@@ -43,6 +43,7 @@ end
 
 function castSongOfHealing()
     while Player.DiffHits > 0 do
+        --Messages.Overhead("Casting song of healing", Player.Serial)
         if useSongOfHealingFn() then
             Pause(songOfHealingCooldown)
         end
@@ -84,12 +85,18 @@ function lockpickChest(chest)
     end
 end
 
+function dropAndPickupChestForConcurrentUnlock(chest)
+    Player.DropOnGround(chest.Serial)
+    Pause(songOfHealingCooldown)
+    Player.PickUp(crap.Serial)
+end
+
 function main()
     Journal.Clear()
 
     -- Try to Heal yourself to once quickly
-    useBandageFn()
-    --useSongOfHealingFn()
+    --useBandageFn()
+    useSongOfHealingFn()
 
     chest = findMyItemByNameFn('Wooden Box')
     if chest == nil then
@@ -107,8 +114,11 @@ function main()
     -- Enable trap
     lockChest(key, chest)
 
+    -- Let concurrent player lockpick / trigger trap
+    --dropAndPickupChestForConcurrentUnlock(chest)
+
     -- Heal to max
-    bandageSelf()
+    castSongOfHealing()
 
     -- Lockpick chest to explosion
     lockpickChest(chest)
