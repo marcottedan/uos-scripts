@@ -44,11 +44,14 @@ function main()
 
     chest = findMyItemOnGroundByNameFn('Wooden Box')
     if chest == nil then
-        Messages.Overhead("No Wooden Box", Player.Serial)
+        --Messages.Overhead("No Wooden Box", Player.Serial)
+        Pause(1000)
     end
 
     -- Lockpick chest to explosion
-    lockpickChest(chest)
+    if chest ~= nil then
+        lockpickChest(chest)
+    end
 end
 
 while true do
