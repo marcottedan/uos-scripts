@@ -31,7 +31,7 @@ function checkJournal(messages)
 end
 
 function bandageSelf()
-    while Player.Hits < Player.HitsMax do
+    while Player.DiffHits > 0 do
         if useBandageFn() then
             -- Wait for 8-12 seconds before checking again (depends on Dex)
             Pause(bandageCooldown)
@@ -77,8 +77,8 @@ end
 function main()
     Journal.Clear()
 
-    -- Heal yourself to maximum
-    bandageSelf()
+    -- Try to Heal yourself to once quickly
+    useBandageFn()
 
     chest = findMyItemByNameFn('Wooden Box')
     if chest == nil then
@@ -91,9 +91,13 @@ function main()
 
     -- Trap chest
     trapChest(chest)
+    trapChest(chest)
 
     -- Enable trap
     lockChest(key, chest)
+
+    -- Heal to max
+    bandageSelf()
 
     -- Lockpick chest to explosion
     lockpickChest(chest)
