@@ -39,13 +39,13 @@ function main()
     -- Wait for healthy
     while Player.DiffHits > 0 do
         -- Wait for Song of Healing Tick
+        Messages.Overhead("Wait for Healing Song", Player.Serial)
         Pause(10000)
     end
 
     chest = findMyItemOnGroundByNameFn('Wooden Box')
     if chest == nil then
-        --Messages.Overhead("No Wooden Box", Player.Serial)
-        Pause(1000)
+        Messages.Overhead("No Wooden Box, waiting", Player.Serial)
     end
 
     -- Lockpick chest to explosion
@@ -57,6 +57,7 @@ end
 while true do
     LockpickingChest = true
     main()
+    Pause(1000)
 end
 
 

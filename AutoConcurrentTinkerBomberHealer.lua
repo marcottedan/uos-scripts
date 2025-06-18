@@ -1,5 +1,6 @@
 local G = require("Data/Profiles/Scripts/Lib/Global")
 local printItemFn = require("Data/Profiles/Scripts/Lib/Print")
+local findMyItemOnGroundByNameFn = require("Data/Profiles/Scripts/Lib/FindMyItemOnGroundByName")
 local findMyItemByNameFn = require("Data/Profiles/Scripts/Lib/FindMyItemByName")
 local findTinkerToolFn = require("Data/Profiles/Scripts/Lib/FindTinkerTool")
 local findLockpickToolFn = require("Data/Profiles/Scripts/Lib/FindLockpickTool")
@@ -86,9 +87,27 @@ function lockpickChest(chest)
 end
 
 function dropAndPickupChestForConcurrentUnlock(chest)
-    Player.DropOnGround(chest.Serial)
-    Pause(songOfHealingCooldown)
-    Player.PickUp(crap.Serial)
+    if Player.DiffHits > 0 then
+        Messages.Overhead("Dropping chest on the ground", Player.Serial)
+        Pause(500)
+        Player.PickUp(chest.Serial)
+        Pause(500)
+        Player.DropOnGround(chest.Serial)
+        Pause(10000)
+        chest = findMyItemOnGroundByNameFn('Wooden Box')
+        Messages.Overhead("Picking up chest", Player.Serial)
+        Player.PickUp(chest.Serial)
+        Pause(500)
+        Player.DropInBackpack(chest.Serial)
+        Pause(500)
+
+        ---- Trap chest
+        --trapChest(chest)
+        --trapChest(chest)
+        --
+        ---- Enable trap
+        --lockChest(key, chest)
+    end
 end
 
 function main()
@@ -115,7 +134,8 @@ function main()
     lockChest(key, chest)
 
     -- Let concurrent player lockpick / trigger trap
-    --dropAndPickupChestForConcurrentUnlock(chest)
+    dropAndPickupChestForConcurrentUnlock(chest)
+    chest = findMyItemByNameFn('Wooden Box')
 
     -- Heal to max
     castSongOfHealing()
