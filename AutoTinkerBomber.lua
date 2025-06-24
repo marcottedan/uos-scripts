@@ -6,10 +6,6 @@ local findLockpickToolFn = require("Data/Profiles/Scripts/Lib/FindLockpickTool")
 local useBandageFn = require("Data/Profiles/Scripts/Lib/UseBandage")
 local useSongOfHealingFn = require("Data/Profiles/Scripts/Lib/UseSongOfHealing")
 
--- 100 Dex should be 10 seconds
-bandageCooldown = 10000
-songOfHealingCooldown = 28500
-
 local TrappingChest = true
 local LockpickingChest = true
 
@@ -29,15 +25,6 @@ function checkJournal(messages)
         end
     end
     return false, nil
-end
-
-function bandageSelf()
-    while Player.DiffHits > 0 do
-        if useBandageFn() then
-            -- Wait for 8-12 seconds before checking again (depends on Dex)
-            Pause(bandageCooldown)
-        end
-    end
 end
 
 function lockChest(key, chest)
@@ -78,10 +65,6 @@ end
 function main()
     Journal.Clear()
 
-    -- Try to Heal yourself to once quickly
-    useBandageFn()
-    --useSongOfHealingFn()
-
     chest = findMyItemByNameFn('Wooden Box')
     if chest == nil then
         Messages.Overhead("No Wooden Box", Player.Serial)
@@ -98,8 +81,10 @@ function main()
     -- Enable trap
     lockChest(key, chest)
 
-    -- Heal to max
-    bandageSelf()
+    -- Heal to max relying on ally
+    while Player.DiffHits > 0 do
+        Pause(1000)
+    end
 
     -- Lockpick chest to explosion
     lockpickChest(chest)

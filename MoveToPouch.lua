@@ -16,7 +16,8 @@ function main()
     -- Move Item to Pouch
     -- Mortar : 3739
     -- Lockpick: 5373
-    local items = Items.FindByFilter({ onground = false, graphics = 5373 })
+    -- Hatchet : 3907
+    local items = Items.FindByFilter({ onground = false, graphics = 3907 })
     for _, item in ipairs(items) do
         if item.RootContainer == Player.Serial then
             Player.PickUp(item.Serial, item.Amount)

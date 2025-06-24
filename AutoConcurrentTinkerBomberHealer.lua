@@ -128,8 +128,8 @@ function main()
     lockChest(key, chest)
 
     -- Let concurrent player lockpick / trigger trap
-    dropAndPickupChestForConcurrentUnlock(chest)
-    chest = findMyItemByNameFn('Wooden Box')
+    --dropAndPickupChestForConcurrentUnlock(chest)
+    --chest = findMyItemByNameFn('Wooden Box')
 
     -- Heal to max
     castSongOfHealing()
