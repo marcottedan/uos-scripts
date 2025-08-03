@@ -1,17 +1,22 @@
-local G = require("Data/Profiles/Scripts/Lib/Global")
-local printItemFn = require("Data/Profiles/Scripts/Lib/Print")
-local mergeOreFn = require("Data/Profiles/Scripts/Lib/MergeOre")
-local getOreFn = require("Data/Profiles/Scripts/Lib/Ore")
-local itemTypes = require("Data/Profiles/Scripts/Lib/ItemCategory")
-local findTinkerToolFn = require("Data/Profiles/Scripts/Lib/FindTinkerTool")
+function FindTinkerTool()
+    -- Tinker's Tool : 7864
+    tool = Items.FindByType(7864)
 
+    -- If item is found use it
+    if tool ~= nil then
+        Player.UseObject(tool.Serial)
+        return true
+    end
+
+    return false
+end
 
 function makeLast()
     -- Wait maximum 2 seconds for the gump to open
-    if Gumps.WaitForGump(G.ToolGump, 2000) then
+    if Gumps.WaitForGump(2653346093, 2000) then
         Pause(1400)
         -- Sends a button click to the gump
-        Gumps.PressButton(G.ToolGump, 21) -- 21 == Make Last
+        Gumps.PressButton(2653346093, 21) -- 21 == Make Last
     end
 
 end
@@ -19,10 +24,9 @@ end
 function main()
     Journal.Clear()
 
-    while findTinkerToolFn() do
+    while FindTinkerTool() do
         makeLast()
     end
-
 end
 
 main()
